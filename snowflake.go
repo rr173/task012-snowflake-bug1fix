@@ -237,7 +237,7 @@ func (s *Service) Inspect(idStr string) (*Inspection, error) {
 	if err != nil {
 		return nil, badRequest("id is not a valid 64-bit unsigned integer: %v", err)
 	}
-	if id>>signBit == 0 {
+	if id>>signBit != 0 {
 		return nil, badRequest("id sign bit must be 0")
 	}
 	ts, machineID, seq := decompose(id)
